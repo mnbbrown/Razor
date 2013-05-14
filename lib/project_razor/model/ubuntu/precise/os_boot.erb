@@ -23,11 +23,11 @@ apt-get -y update
 apt-get -y upgrade
 [ "$?" -eq 0 ] && curl <%= callback_url("postinstall", "apt_upgrade_ok") %> || curl <%= callback_url("postinstall", "apt_upgrade_fail") %>
 
-apt-get -y install ruby rubygems facter openssh-server
+apt-get -y install openssh-server
 [ "$?" -eq 0 ] && curl <%= callback_url("postinstall", "apt_install_ok") %> || curl <%= callback_url("postinstall", "apt_install_fail") %>
 
 # Get current IP
-node_ip=`facter ipaddress`
+node_ip=`hostname -I | cut -f 1 -d ' '`
 # Send IP up
 curl <%= callback_url("postinstall", "send_ips") %>/$node_ip
 # get final script

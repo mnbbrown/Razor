@@ -78,7 +78,7 @@ module ProjectRazor
             :metadata  => node_metadata,
             :uuid  => @node.uuid,
             :ipaddress => @node_ip,
-            :node_hostname => @hostname
+            :node_hostname => fqdn()
           }
           @current_state = @broker.agent_hand_off(options)
         else
@@ -266,6 +266,10 @@ module ProjectRazor
 
       def hostname
         "#{@hostname_prefix}#{@counter.to_s}"
+      end
+
+      def fqdn
+        "#{hostname()}.#{@domainname}"
       end
 
       def kernel_path

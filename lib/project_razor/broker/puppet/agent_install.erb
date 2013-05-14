@@ -22,7 +22,7 @@ pluginsync = true
 report = true
 <%= "ca_server = #{@options[:ca_server]}" if @options[:ca_server] && !@options[:ca_server].empty? %>
 <%= "server = #{@options[:server]}" if @options[:server] && !@options[:server].empty? %>
-certname = <%= @options[:puppetagent_certname] %>
+certname = <%= @options[:node_hostname] %>
 EOFPUPPETCONF
 
     if [ -f /etc/default/puppet ]; then

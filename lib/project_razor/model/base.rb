@@ -57,6 +57,7 @@ module ProjectRazor
 
       def fsm
         # used to defined base tree elements like Broker
+        # state -> action -> state
         base_fsm_tree = {
             :broker_fail => {
                 :else => :broker_fail,
